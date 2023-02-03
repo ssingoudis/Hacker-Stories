@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
 const title = 'React';
 function getTitle(title){
@@ -28,8 +29,7 @@ const list = [
 
 
 {/*============================= APP COMPONENT =================================*/}
-function App() {
-  return (
+const App = () => (
     <div>
       
       <h1>Welcome to {getTitle('React')} Master Class!</h1>
@@ -39,25 +39,21 @@ function App() {
     <List />
     </div>
   )
-}
+
 
 
 {/* =============================== FUNCTIONS AS COMPONENTS ================================ */}
-function Search() {
-  return (
+const Search = () => (
     <div>
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" />
       </div>
   )
-}
     
 
-function List() {
-  return(
+const List = () => (
   <ul>
-  {list.map(function (item) {
-       return (
+  {list.map((item) => (
         <li key={item.objectID}>
           <p>Author: {item.author}</p>
           <p>Link to Documentation:
@@ -67,9 +63,8 @@ function List() {
           <p>Value Points given: {item.points}</p>
           <p>Topic difficulty: {item.difficulty}</p>
         </li>
-      );
-  })}
+
+  ))}
 </ul>)
-}
 
 export default App;
