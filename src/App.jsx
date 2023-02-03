@@ -27,33 +27,49 @@ const list = [
 ];
 
 
+{/*============================= APP COMPONENT =================================*/}
 function App() {
   return (
     <div>
       
       <h1>Welcome to {getTitle('React')} Master Class!</h1>
 
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" />
-
-    <ul>
-      {list.map(function (item) {
-           return (
-            <li key={item.objectID}>
-              <p>Author: {item.author}</p>
-              <p>Link to Documentation:
-                <a href={item.url}> {item.title}</a>
-              </p>
-              <p>Number of possible Comments: {item.num_comments}</p>
-              <p>Value Points given: {item.points}</p>
-              <p>Topic difficulty: {item.difficulty}</p>
-            </li>
-          );
-      })}
-    </ul>
-
+    <Search />
+    <hr/>
+    <List />
     </div>
   )
+}
+
+
+{/* =============================== FUNCTIONS AS COMPONENTS ================================ */}
+function Search() {
+  return (
+    <div>
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" />
+      </div>
+  )
+}
+    
+
+function List() {
+  return(
+  <ul>
+  {list.map(function (item) {
+       return (
+        <li key={item.objectID}>
+          <p>Author: {item.author}</p>
+          <p>Link to Documentation:
+            <a href={item.url}> {item.title}</a>
+          </p>
+          <p>Number of possible Comments: {item.num_comments}</p>
+          <p>Value Points given: {item.points}</p>
+          <p>Topic difficulty: {item.difficulty}</p>
+        </li>
+      );
+  })}
+</ul>)
 }
 
 export default App;
