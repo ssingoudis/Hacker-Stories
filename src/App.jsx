@@ -6,43 +6,74 @@ function getTitle(title){
   return title;
 }
 
-const list = [
-  {
-  title: 'React',
-  url: 'https://reactjs.org/',
-  author: 'Jordan Walke',
-  num_comments: 3,
-  points: 4,
-  difficulty: 8,
-  objectID: 0,
-  },
-  {
-  title: 'Redux',
-  url: 'https://redux.js.org/',
-  author: 'Dan Abramov, Andrew Clark',
-  num_comments: 2,
-  points: 5,
-  difficulty: 6,
-  objectID: 1,
-  },
-];
 
 
 {/*============================= APP COMPONENT =================================*/}
-const App = () => (
-    <div>
-      
-      <h1>Welcome to {getTitle('React')} Master Class!</h1>
+const App = () => {
+  const stories = [
+    {
+    title: 'React',
+    url: 'https://reactjs.org/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    difficulty: 8,
+    objectID: 0,
+    },
+    {
+    title: 'Redux',
+    url: 'https://redux.js.org/',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    difficulty: 6,
+    objectID: 1,
+    },
+    {
+    title: 'Next.JS',
+    url: 'https://redux.js.org/',
+    author: 'Je m\'apelle, Tobias Schnell',
+    num_comments: 10,
+    points: 1,
+    difficulty: 1,
+    objectID: 2,
+    },
+  ];
 
-    <Search />
-    <hr/>
-    <List />
-    </div>
-  )
+  return (
+      <div> 
+        <h1>Welcome to {getTitle('React')} Master Class!</h1>
+        <Search />
+        <hr/>
+        <List list={stories}/>
+      </div>
+  );
+};
 
 
 
 {/* =============================== FUNCTIONS AS COMPONENTS ================================ */}
+
+const List = (props) => (
+  <ul>
+  {props.list.map((item) => (
+    <Item key={item.objectID} item={item} />
+  ))}
+  </ul>
+);
+
+const Item = (props) => (
+  <li>
+  <span>
+    <a href={props.item.url}>{props.item.title}</a>
+  </span>
+  <span>, {props.item.author},</span>
+  <span> {props.item.num_comments},</span>
+  <span> {props.item.points}</span>
+</li>
+);
+
+
 const Search = () => { 
   const handleChange = (event) => {
     //synthetic event
@@ -50,8 +81,6 @@ const Search = () => {
     //value of the taget (Here input HTML Element)
     console.log(event.target.value);
   }
-
-
   return (
     <div>
       <label htmlFor="search">Search: </label>
@@ -59,21 +88,6 @@ const Search = () => {
       </div>
   )}
     
-
-const List = () => (
-  <ul>
-  {list.map((item) => (
-        <li key={item.objectID}>
-          <p>Author: {item.author}</p>
-          <p>Link to Documentation:
-            <a href={item.url}> {item.title}</a>
-          </p>
-          <p>Number of possible Comments: {item.num_comments}</p>
-          <p>Value Points given: {item.points}</p>
-          <p>Topic difficulty: {item.difficulty}</p>
-        </li>
-
-  ))}
-</ul>)
+  
 
 export default App;
